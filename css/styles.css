@@ -1,0 +1,91 @@
+<style>
+
+  .wrapper {
+    width: 100%;
+  }
+  #container {
+    height: 450px;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .slide_1 {
+    background: url('../images/carousel1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    transform: translateX(0);
+    transition: all .5s ease-out;
+  }
+  .slide_2 {
+    background: url('../images/carousel2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    transform: translateX(0);
+    transition: all .5s ease-out;
+  }
+  .slide_3 {
+    background: url('../images/carousel3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;`
+    transform: translateX(0);
+    transition: all .5s ease-out;
+  }
+
+  #left_holder {
+    height: 450px;
+    width: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #right_holder {
+    height: 450px;
+    width: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .left {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .right {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+
+  .navigation {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em 0 0 0;
+  }
+  .navigation a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1em;
+    background: #666;
+  }
+  .navigation a.active {
+    background: #999;
+  }
+
+</style>
