@@ -13,7 +13,10 @@
       mytime,
       pager1,
       pager2,
-      pager3;
+      pager3,
+      text1 = document.getElementById('slide_1__text'),
+      text2 = document.getElementById('slide_2__text'),
+      text3 = document.getElementById('slide_3__text');
 
   // function slide(x) {
   //   var image = document.getElementById('container');
@@ -76,16 +79,25 @@
     second.className = "";
     third.className = "";
     first.className = "active";
+    text1.className = "show";
+    text2.className = "";
+    text3.className = "";
   }
   pager2 = function() {
     first.className = "";
     third.className = "";
     second.className = "active";
+    text2.className = "show";
+    text1.className = "";
+    text3.className = "";
   }
   pager3 = function() {
     first.className = "";
     second.className = "";
     third.className = "active";
+    text3.className = "show";
+    text1.className = "";
+    text2.className = "";
   }
 
 })();

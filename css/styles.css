@@ -16,7 +16,7 @@
     background-size: cover;
     background-position: center;
     height: 450px;
-    transform: translateX(0);
+    /*transform: translateX(0);*/
     transition: all .5s ease-out;
   }
   .slide_2 {
@@ -24,15 +24,15 @@
     background-size: cover;
     background-position: center;
     height: 450px;
-    transform: translateX(0);
+    /*transform: translateX(0);*/
     transition: all .5s ease-out;
   }
   .slide_3 {
     background: url('../images/carousel3.jpg') no-repeat;
     background-size: cover;
     background-position: center;
-    height: 450px;`
-    transform: translateX(0);
+    height: 450px;
+    /*transform: translateX(0);*/
     transition: all .5s ease-out;
   }
 
@@ -87,5 +87,28 @@
   .navigation a.active {
     background: #999;
   }
+
+  #slide_1__text,
+  #slide_2__text,
+  #slide_3__text {
+    color: #000;
+    background: #ccc;
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+    /*position: absolute;*/
+    visibility: hidden;
+    /*top: -99999px;*/
+    z-index: -999;
+    transition: opacity .5s ease-out;
+  }
+  .show {
+    opacity: 1 !important;
+    top: 0;
+    transition: opacity .5s ease-out;
+    visibility: visible !important;
+    z-index: 100 !important;
+  }
+
 
 </style>
