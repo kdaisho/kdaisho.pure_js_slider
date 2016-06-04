@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pure JS Slider</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <style>
+  .wrapper {
+    width: 100%;
+  }
+  .carousel {
+    height: 450px;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .carousel div {
+    height: 450px;
+  }
+  #slide_1 {
+    background: url('../images/carousel1.jpg') no-repeat center / cover;
+  }
+  #slide_2 {
+    background: url('../images/carousel2.jpg') no-repeat center / cover;
+  }
+  #slide_3 {
+    background: url('../images/carousel3.jpg') no-repeat center / cover;
+  }
+  .show {
+    display: block !important;
+  }
+  .hide {
+    display: none;
+  }
+  .navigation {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em 0 0 0;
+  }
+  .navigation a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1em;
+    background: #666;
+  }
+  .navigation a.active {
+    background: #999;
+  }
+  </style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="carousel">
+    <div id="slide_1" class="show" style="display: none;"></div>
+    <div id="slide_2" style="display: none;"></div>
+    <div id="slide_3" style="display: none;"></div>
+  </div>
+
+  <div id="nav" class="navigation">
+    <a id="first" class="active" href="#">Slide 1</a>
+    <a id="second" href="#">Slide 2</a>
+    <a id="third" href="#">Slide 3</a>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function() {
+  var index = 2,
+      total = 3,
+      slide_1 = document.getElementById('slide_1'),
+      slide_2 = document.getElementById('slide_2'),
+      slide_3 = document.getElementById('slide_3'),
+      nav = document.getElementById('nav'),
+      first = document.getElementById('first'),
+      second = document.getElementById('second'),
+      third = document.getElementById('third'),
+      duration = 2000,
+      transition,
+      mytime,
+      pager1,
+      pager2,
+      pager3;
+
+  first.onclick = function() {
+    index = 1;
+    pager1();
+  }
+  second.onclick = function() {
+    index = 2;
+    pager2();
+  }
+  third.onclick = function() {
+    index = 3;
+    pager3();
+  }
+
+  nav.onclick = function() { //Reset transition duration
+    clearInterval(mytime);
+    if (index < total) {
+      index++;
+    }
+    else {
+      index = 1;
+    }
+    mytime = setInterval(transition, duration);
+  };
+
+  transition = function() {
+    console.log("index is " + index);
+    if (index == 1) {
+      pager1();
+      index++;
+    }
+    else if (index == 2) {
+      pager2();
+      index++;
+    }
+    else if (index == 3) {
+      pager3();
+      index = 1;
+    }
+  };
+
+  mytime = setInterval(transition, duration);
+
+  pager1 = function() {
+    second.className = "";
+    third.className = "";
+    first.className = "active";
+    slide_1.className = "show";
+    slide_2.className = "";
+    slide_3.className = "";
+  }
+  pager2 = function() {
+    first.className = "";
+    third.className = "";
+    second.className = "active";
+    slide_1.className = "";
+    slide_2.className = "show";
+    slide_3.className = "";
+  }
+  pager3 = function() {
+    first.className = "";
+    second.className = "";
+    third.className = "active";
+    slide_1.className = "";
+    slide_2.className = "";
+    slide_3.className = "show";
+  }
+
+})();  
+</script>
+</body>
+</html>
