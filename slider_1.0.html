@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pure JS Slider Version 1.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .wrapper {
+      width: 100%;
+    }
+  #container {
+    height: 450px;
+    max-width: 1080px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+  .slide_1 {
+    background: url('images/carousel1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    transition: all .5s ease-out;
+  }
+  .slide_2 {
+    background: url('images/carousel2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    transition: all .5s ease-out;
+  }
+  .slide_3 {
+    background: url('images/carousel3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    transition: all .5s ease-out;
+  }
+  #left_holder {
+    height: 450px;
+    width: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #fff;
+    cursor: pointer;
+  }
+  #right_holder {
+    height: 450px;
+    width: 100px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    cursor: pointer;
+  }
+  .left {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+  .right {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 40%;
+    right: 0;
+  }
+  .navigation {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em 0 0 0;
+  }
+  .navigation a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1em;
+    background: #666;
+  }
+  .navigation a.active {
+    background: #999;
+  }
+  #slide_1__text,
+  #slide_2__text,
+  #slide_3__text {
+    color: #000;
+    background: #ccc;
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -999;
+    transition: opacity .5s ease-out;
+  }
+  .show {
+    opacity: 1 !important;
+    top: 0;
+    transition: opacity .5s ease-out;
+    visibility: visible !important;
+    z-index: 100 !important;
+  }
+  </style>
+  
+</head>
+<body>
+<div class="wrapper">
+  <div id="container" class="slide_1">
+    <div id="slide_1__text" class="show">
+      <h2>Slide 1 is nice.</h2>
+      <p>oeuruoiwejijwerilj fdksjjfklsadjf</p>
+    </div>
+    <div id="slide_2__text" class="" style="margin-top: -420px;">
+      <h2>Slide 2 is bitter.</h2>
+      <p>oeuruoiwejijwerilj fdksjjfklsadjf</p>
+    </div>
+    <div id="slide_3__text" class="" style="margin-top: -420px;">
+      <h2>Slide 3 is bad.</h2>
+      <p>oeuruoiwejijwerilj fdksjjfklsadjf</p>
+    </div>
+    <div id="nav" class="navigation">
+      <a id="first" class="active" href="#">Slide 1</a>
+      <a id="second" href="#">Slide 2</a>
+      <a id="third" href="#">Slide 3</a>
+    </div>
+  </div>
+
+  <script>
+  "use strict";
+
+  (function() {
+    var imagecount = 1,
+        total = 3,
+        image = document.getElementById('container'),
+        nav = document.getElementById('nav'),
+        first = document.getElementById('first'),
+        second = document.getElementById('second'),
+        third = document.getElementById('third'),
+        duration = 4000,
+        transition,
+        mytime,
+        pager1,
+        pager2,
+        pager3,
+        text1 = document.getElementById('slide_1__text'),
+        text2 = document.getElementById('slide_2__text'),
+        text3 = document.getElementById('slide_3__text');
+
+    // function slide(x) {
+    //   var image = document.getElementById('container');
+    //   imagecount = imagecount + x;
+    //   if(imagecount > total){
+    //     imagecount = 1;
+    //   }
+    //   else if(imagecount < 1){
+    //     imagecount = total;
+    //   }
+    //   image.className = "slide_" + imagecount;
+    // }
+
+    first.onclick = function() {
+      image.className = "slide_1";
+      imagecount = 1;
+      pager1();
+    }
+    second.onclick = function() {
+      image.className = "slide_2";
+      imagecount = 2;
+      pager2();
+    }
+    third.onclick = function() {
+      image.className = "slide_3";
+      imagecount = 3;
+      pager3();
+    }
+
+    nav.onclick = function() { //Reset transition duration
+      clearInterval(mytime);
+      mytime = setInterval(transition, duration);
+    };
+
+    transition = function() {
+      imagecount = imagecount + 1;
+
+      if(imagecount > total){
+        imagecount = 1;
+      }
+      else if(imagecount < 1){
+        imagecount = total;
+      }
+
+      image.className = "slide_" + imagecount;
+      if(image.className == "slide_1") {
+        pager1();
+      }
+      else if(image.className == "slide_2") {
+        pager2();
+      }
+      else if(image.className == "slide_3") {
+        pager3();
+      }
+    };
+
+    mytime = setInterval(transition, duration);
+
+    pager1 = function() {
+      second.className = "";
+      third.className = "";
+      first.className = "active";
+      text1.className = "show";
+      text2.className = "";
+      text3.className = "";
+    }
+    pager2 = function() {
+      first.className = "";
+      third.className = "";
+      second.className = "active";
+      text2.className = "show";
+      text1.className = "";
+      text3.className = "";
+    }
+    pager3 = function() {
+      first.className = "";
+      second.className = "";
+      third.className = "active";
+      text3.className = "show";
+      text1.className = "";
+      text2.className = "";
+    }
+
+  })();
+  </script>
+</div>
+</body>
+</html>
